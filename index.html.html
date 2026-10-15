@@ -1,0 +1,726 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Duvan Calvo Mora</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+/* Layout: dark-first, full-bleed hero, sticky nav, 2-col project grid */
+:root {
+  --bg:        #080c10;
+  --bg2:       #0e141b;
+  --surface:   #131920;
+  --border:    #1e2a35;
+  --border2:   #253040;
+  --fg:        #e2eaf3;
+  --muted:     #6b7f92;
+  --muted2:    #4a5968;
+  --accent:    #00c896;
+  --accent-d:  #009e78;
+  --accent-glow: rgba(0,200,150,0.12);
+  --blue:      #4d9fff;
+  --tag-bg:    rgba(0,200,150,0.08);
+  --tag-fg:    #00c896;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg:        #f4f7fb;
+    --bg2:       #edf1f7;
+    --surface:   #ffffff;
+    --border:    #dce3ec;
+    --border2:   #c8d3de;
+    --fg:        #111820;
+    --muted:     #5a6a7a;
+    --muted2:    #8a9aaa;
+    --accent:    #007a5e;
+    --accent-d:  #005f48;
+    --accent-glow: rgba(0,122,94,0.08);
+    --blue:      #1a6fcc;
+    --tag-bg:    rgba(0,122,94,0.08);
+    --tag-fg:    #007a5e;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg:        #f4f7fb;
+  --bg2:       #edf1f7;
+  --surface:   #ffffff;
+  --border:    #dce3ec;
+  --border2:   #c8d3de;
+  --fg:        #111820;
+  --muted:     #5a6a7a;
+  --muted2:    #8a9aaa;
+  --accent:    #007a5e;
+  --accent-d:  #005f48;
+  --accent-glow: rgba(0,122,94,0.08);
+  --blue:      #1a6fcc;
+  --tag-bg:    rgba(0,122,94,0.08);
+  --tag-fg:    #007a5e;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+.inner { max-width: 960px; margin: 0 auto; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; }
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 100;
+  background: rgba(8,12,16,.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) nav { background: rgba(244,247,251,.9); }
+}
+:root[data-theme="light"] nav { background: rgba(244,247,251,.9); }
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+.nav-logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--fg); text-decoration: none; }
+.theme-btn {
+  background: none; border: 1px solid var(--border); border-radius: 6px;
+  color: var(--muted); cursor: pointer; font-size: 13px;
+  padding: 4px 10px; transition: all 0.15s; font-family: inherit;
+}
+.theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── HERO ── */
+#hero {
+  padding-top: 100px;
+  padding-bottom: 88px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute;
+  top: -60px; left: -80px;
+  width: 500px; height: 400px;
+  background: radial-gradient(ellipse at 30% 40%, rgba(0,200,150,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding: 5px 12px;
+  border: 1px solid rgba(0,200,150,0.25);
+  border-radius: 20px;
+  background: var(--accent-glow);
+}
+.hero-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.hero-name {
+  font-size: clamp(40px, 7vw, 68px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  margin-bottom: 16px;
+  text-wrap: balance;
+}
+.hero-name .accent { color: var(--accent); }
+.hero-role {
+  font-size: clamp(17px, 2.5vw, 22px);
+  font-weight: 300;
+  color: var(--muted);
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+.hero-desc {
+  max-width: 560px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+  margin-bottom: 40px;
+}
+.hero-desc strong { color: var(--fg); font-weight: 500; }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 22px; border-radius: 7px; font-size: 14px;
+  font-weight: 600; cursor: pointer; border: none;
+  transition: transform 0.12s, opacity 0.15s, box-shadow 0.15s;
+  font-family: inherit; letter-spacing: -0.01em;
+}
+.btn:hover { text-decoration: none; transform: translateY(-2px); opacity: 0.92; }
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(0,200,150,0.25);
+}
+.btn-primary:hover { box-shadow: 0 6px 28px rgba(0,200,150,0.35); }
+.btn-ghost {
+  background: var(--surface);
+  color: var(--fg);
+  border: 1px solid var(--border2);
+}
+.btn-ghost:hover { border-color: var(--accent); }
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.hero-stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--fg);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.hero-stat-num span { color: var(--accent); }
+.hero-stat-lbl { font-size: 13px; color: var(--muted); margin-top: 3px; }
+
+/* ── SECTION BASE ── */
+section { padding-block: 80px; }
+.section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.section-heading {
+  font-size: clamp(24px, 3.5vw, 34px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 40px;
+  text-wrap: balance;
+}
+.divider { border: none; border-top: 1px solid var(--border); }
+
+/* ── SKILLS ── */
+#skills { background: var(--bg2); padding-block: 72px; }
+.skills-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  align-items: start;
+}
+.skills-text { color: var(--muted); line-height: 1.75; }
+.skills-text p + p { margin-top: 12px; }
+.skill-groups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.skill-group {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  transition: border-color 0.2s;
+}
+.skill-group:hover { border-color: var(--border2); }
+.sg-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 12px;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.tag {
+  background: var(--tag-bg);
+  color: var(--tag-fg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  padding: 3px 9px;
+  border-radius: 5px;
+  font-weight: 500;
+  border: 1px solid rgba(0,200,150,0.15);
+}
+.tag-blue {
+  background: rgba(77,159,255,0.08);
+  color: var(--blue);
+  border-color: rgba(77,159,255,0.15);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .tag-blue { background: rgba(26,111,204,0.08); color: var(--blue); border-color: rgba(26,111,204,0.15); }
+}
+:root[data-theme="light"] .tag-blue { background: rgba(26,111,204,0.08); color: var(--blue); border-color: rgba(26,111,204,0.15); }
+
+/* ── PROJECTS ── */
+#proyectos { padding-block: 80px; }
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.proj {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.2s, transform 0.18s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.proj::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.proj:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+.proj:hover::before { opacity: 1; }
+.proj-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.proj-icon {
+  font-size: 24px;
+  width: 46px; height: 46px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.proj-links { display: flex; gap: 10px; }
+.proj-link {
+  color: var(--muted);
+  display: flex; align-items: center;
+  transition: color 0.15s;
+  line-height: 1;
+}
+.proj-link:hover { color: var(--accent); text-decoration: none; }
+.proj-name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.proj-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; flex: 1; }
+.proj-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.proj-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+}
+.proj-footer {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-top: 2px;
+}
+.proj-stat { flex: 1; text-align: center; }
+.proj-stat + .proj-stat { border-left: 1px solid var(--border); }
+.proj-stat-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.proj-stat-lbl { font-size: 11px; color: var(--muted2); margin-top: 2px; }
+.live-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--accent); padding: 2px 8px;
+  background: var(--accent-glow);
+  border: 1px solid rgba(0,200,150,0.2);
+  border-radius: 20px;
+  font-weight: 500;
+}
+.live-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-in-out infinite; }
+
+/* ── EDUCATION ── */
+#educacion { background: var(--bg2); padding-block: 72px; }
+.edu-card {
+  display: flex; gap: 20px; align-items: flex-start;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px; max-width: 520px;
+}
+.edu-icon {
+  font-size: 28px; width: 52px; height: 52px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+}
+.edu-degree { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 4px; }
+.edu-detail { font-size: 13px; color: var(--muted); }
+
+/* ── CONTACT ── */
+#contacto { padding-block: 88px; text-align: center; }
+.contact-heading {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  text-wrap: balance;
+}
+.contact-sub { color: var(--muted); max-width: 420px; margin: 0 auto 40px; font-size: 15px; }
+.contact-row { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+.contact-pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 11px 22px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; font-size: 14px; font-weight: 500;
+  color: var(--fg); transition: all 0.15s;
+}
+.contact-pill:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); text-decoration: none; }
+.email-row {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; color: var(--muted);
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  user-select: all;
+  cursor: text;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding-block: 24px;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted2);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 680px) {
+  .skills-layout { grid-template-columns: 1fr; }
+  .skill-groups { grid-template-columns: 1fr 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 24px; }
+  .nav-links { gap: 14px; }
+}
+@media (max-width: 420px) {
+  .skill-groups { grid-template-columns: 1fr; }
+  .nav-links li:not(:last-child) { display: none; }
+}
+</style>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">duvan.dev</span>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><button class="theme-btn" onclick="toggleTheme()">☀︎</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="inner">
+    <div class="hero-glow"></div>
+    <h1 class="hero-name">Duvan<br><span class="accent">Calvo Mora</span></h1>
+    <p class="hero-role">Ingeniero de Software</p>
+    <p class="hero-desc">
+      Desarrollo aplicaciones web de punta a punta: modelado de bases de datos, APIs REST, interfaces de usuario e integración con servicios externos. He trabajado con Python, C#, React y SQL Server, y estoy siempre abierto a adoptar nuevas tecnologías según lo que el proyecto requiera.
+    </p>
+    <div class="hero-ctas">
+      <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+      <a href="https://github.com/DuvanJ" target="_blank" rel="noopener" class="btn btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">4<span>+</span></div>
+        <div class="hero-stat-lbl">Proyectos completos</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">Full<span> stack</span></div>
+        <div class="hero-stat-lbl">Backend · Frontend · BD</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-lbl">Demos públicas en vivo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="inner">
+    <p class="section-eyebrow">Stack técnico</p>
+    <h2 class="section-heading">Tecnologías</h2>
+    <div class="skills-layout">
+      <div class="skills-text">
+        <p>He construido proyectos que van desde sistemas empresariales con lógica de negocio compleja, hasta dashboards de análisis de datos y aplicaciones con IA integrada.</p>
+        <p>Estas son las tecnologías con las que he trabajado hasta ahora. Me adapto rápido a nuevas herramientas y entornos según lo que cada proyecto necesite.</p>
+      </div>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <p class="sg-label">Lenguajes</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">C#</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="sg-label">Frameworks</p>
+          <div class="tags">
+            <span class="tag">FastAPI</span>
+            <span class="tag">ASP.NET MVC</span>
+            <span class="tag">React</span>
+            <span class="tag">Streamlit</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="sg-label">Base de datos</p>
+          <div class="tags">
+            <span class="tag">SQL Server</span>
+            <span class="tag">EF Core</span>
+            <span class="tag">Stored Procs</span>
+            <span class="tag">TVP</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="sg-label">Herramientas & otros</p>
+          <div class="tags">
+            <span class="tag">JWT</span>
+            <span class="tag">Git</span>
+            <span class="tag">Claude API</span>
+            <span class="tag-blue tag">pandas</span>
+            <span class="tag-blue tag">Plotly</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="proyectos">
+  <div class="inner">
+    <p class="section-eyebrow">Trabajo</p>
+    <h2 class="section-heading">Proyectos</h2>
+    <div class="projects-grid">
+
+      <!-- PromoIQ -->
+      <div class="proj">
+        <div class="proj-top">
+          <div class="proj-icon">📊</div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="live-badge"><span class="live-dot"></span>IA integrada</span>
+            <div class="proj-links">
+              <a href="https://github.com/DuvanJ/PromoIQ" target="_blank" rel="noopener" class="proj-link" title="GitHub">
+                <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="proj-name">PromoIQ</p>
+          <p class="proj-desc">Sistema de inteligencia comercial con asistente IA (Claude API) para gestión de campañas promocionales, análisis de inventario y toma de decisiones. Multi-país (CR, GT, SV) con 5 niveles de acceso y contexto IA diferenciado por rol.</p>
+        </div>
+        <div class="proj-stack">
+          <span class="proj-chip">Python</span>
+          <span class="proj-chip">FastAPI</span>
+          <span class="proj-chip">React</span>
+          <span class="proj-chip">SQL Server</span>
+          <span class="proj-chip">Claude API</span>
+          <span class="proj-chip">JWT</span>
+        </div>
+      </div>
+
+      <!-- Football Dashboard -->
+      <div class="proj">
+        <div class="proj-top">
+          <div class="proj-icon">⚽</div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="live-badge"><span class="live-dot"></span>En vivo</span>
+            <div class="proj-links">
+              <a href="https://football-dashboard-rho.vercel.app" target="_blank" rel="noopener" class="proj-link" title="Demo">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+              </a>
+              <a href="https://github.com/DuvanJ" target="_blank" rel="noopener" class="proj-link" title="GitHub">
+                <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="proj-name">Football Dashboard</p>
+          <p class="proj-desc">Tablero interactivo de fútbol en tiempo real con tabla de posiciones por zonas (Champions/descenso), top 10 por puntos, estadísticas de ataque/defensa y últimos marcadores. Actualización automática cada 60 s. 12 ligas disponibles.</p>
+        </div>
+        <div class="proj-stack">
+          <span class="proj-chip">Python</span>
+          <span class="proj-chip">FastAPI</span>
+          <span class="proj-chip">React 18</span>
+          <span class="proj-chip">Tailwind CSS</span>
+          <span class="proj-chip">Recharts</span>
+          <span class="proj-chip">Vercel</span>
+        </div>
+      </div>
+
+      <!-- RRHH -->
+      <div class="proj">
+        <div class="proj-top">
+          <div class="proj-icon">🏢</div>
+          <div class="proj-links">
+            <a href="https://github.com/DuvanJ/rrhh-system" target="_blank" rel="noopener" class="proj-link" title="GitHub">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <p class="proj-name">RRHH System</p>
+          <p class="proj-desc">Sistema integral de gestión de recursos humanos con nómina automática, asistencia, evaluaciones de desempeño, liquidaciones y flujo de aprobación anti-auto-aprobación. Cumple con el Código de Trabajo de Costa Rica.</p>
+        </div>
+        <div class="proj-stack">
+          <span class="proj-chip">ASP.NET MVC</span>
+          <span class="proj-chip">C# .NET 6</span>
+          <span class="proj-chip">SQL Server</span>
+          <span class="proj-chip">EF Core</span>
+          <span class="proj-chip">QuestPDF</span>
+        </div>
+      </div>
+
+      <!-- Tech Jobs EDA -->
+      <div class="proj">
+        <div class="proj-top">
+          <div class="proj-icon">📈</div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="live-badge"><span class="live-dot"></span>En vivo</span>
+            <div class="proj-links">
+              <a href="https://tech-jobs-eda.streamlit.app" target="_blank" rel="noopener" class="proj-link" title="Demo">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="proj-name">Tech Jobs EDA</p>
+          <p class="proj-desc">Análisis exploratorio interactivo del mercado laboral tecnológico global. Visualizaciones de salarios, tecnologías más demandadas y distribución geográfica de empleos. Desplegado como app pública en Streamlit.</p>
+        </div>
+        <div class="proj-stack">
+          <span class="proj-chip">Python</span>
+          <span class="proj-chip">Streamlit</span>
+          <span class="proj-chip">pandas</span>
+          <span class="proj-chip">Plotly</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCACION -->
+<section id="educacion">
+  <div class="inner">
+    <p class="section-eyebrow">Formación</p>
+    <h2 class="section-heading">Educación</h2>
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div>
+        <p class="edu-degree">Bachillerato en Ingeniería en Software</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="inner">
+    <p class="section-eyebrow">Contacto</p>
+    <h2 class="contact-heading">Hablemos</h2>
+    <p class="contact-sub">Podés ver mi código en GitHub o escribirme directamente al correo.</p>
+    <div class="contact-row">
+      <a href="https://github.com/DuvanJ" target="_blank" rel="noopener" class="contact-pill">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </div>
+    <div class="email-row">moraduvan7@gmail.com</div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">© 2025 Duvan Calvo Mora</div>
+</footer>
+
+<script>
+function toggleTheme() {
+  const r = document.documentElement;
+  const cur = r.getAttribute('data-theme');
+  const next = (!cur || cur === 'dark') ? 'light' : 'dark';
+  r.setAttribute('data-theme', next);
+  try { localStorage.setItem('theme', next); } catch(e){}
+}
+try {
+  const saved = localStorage.getItem('theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+} catch(e){}
+</script>
+
+</body></html>
